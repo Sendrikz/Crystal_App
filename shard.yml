@@ -1,0 +1,25 @@
+name: community_app
+version: 0.1.0
+
+dependencies:
+  mysql:
+    github: crystal-lang/crystal-mysql
+  kemal:
+    github: kemalcr/kemal
+  jennifer:
+    github: imdrasil/jennifer.cr
+    version: "~> 0.8.4"
+  sam:
+    github: imdrasil/sam.cr
+
+
+authors:
+  - your-name-here <your-email-here>
+
+targets:
+  community_app:
+    main: src/community_app.cr
+
+crystal: 0.33.0
+
+license: MIT
