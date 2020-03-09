@@ -1,4 +1,4 @@
-class Message < Jennifer::Migration::Base
+class Messages < Jennifer::Migration::Base
   def up
     create_table :messages do |t|
       t.string :text, { :null => false }
