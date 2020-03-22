@@ -11,5 +11,5 @@ class GroupsUsers < Jennifer::Model::Base
   )
 
   belongs_to :user, User
-  belongs_to :group, Group
+  belongs_to :group, CommunityGroup
 end

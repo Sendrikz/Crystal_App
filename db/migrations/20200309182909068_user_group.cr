@@ -1,6 +1,6 @@
 class UserGroup < Jennifer::Migration::Base
   def up
-    create_table :groups_users do |t|
+    create_table :community_groups_users do |t|
       t.integer :user_id,  { :null => false }
       t.integer :group_id, { :null => false }
       t.bool    :isManage, { :default => false }
@@ -8,6 +8,6 @@ class UserGroup < Jennifer::Migration::Base
   end
 
   def down
-    drop_table :groups_users if table_exists? :groups_users
+    drop_table :community_groups_users if table_exists? :community_groups_users
   end
 end

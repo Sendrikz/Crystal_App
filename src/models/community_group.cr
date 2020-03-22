@@ -1,4 +1,4 @@
-class Group < Jennifer::Model::Base
+class CommunityGroup < Jennifer::Model::Base
   with_timestamps
 
   mapping(
@@ -7,4 +7,7 @@ class Group < Jennifer::Model::Base
     created_at: Time?,
     updated_at: Time?,
   )
+
+  has_and_belongs_to_many :users, User, foreign: :user_id
+
 end

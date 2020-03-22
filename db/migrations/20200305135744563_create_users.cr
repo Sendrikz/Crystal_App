@@ -1,10 +1,11 @@
 class CreateUsers < Jennifer::Migration::Base
   def up
     create_table :users do |t|
+      t.string :email, { :null => false }
+      t.string :password_digest, { :null => false }
       t.string :name, { :null => false }
       t.string :surname, { :null => false }
       t.integer :yearOfStudy, { :null => false }
-      t.date_time :birthday, { :null => false }
       t.string :faculty, { :null => false }
 
       t.timestamps
