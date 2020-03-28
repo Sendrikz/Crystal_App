@@ -8,6 +8,13 @@ class CommunityGroup < Jennifer::Model::Base
     updated_at: Time?,
   )
 
-  has_and_belongs_to_many :users, User, foreign: :user_id
+  has_and_belongs_to_many :users, User, foreign: :community_group_id
+
+JSON.mapping(
+  id: {type: Int32, nilable: true},
+  created_at: {type: Time, nilable: true},
+  updated_at: {type: Time, nilable: true},
+  name: String
+)
 
 end

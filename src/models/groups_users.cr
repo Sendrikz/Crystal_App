@@ -1,15 +1,15 @@
-class GroupsUsers < Jennifer::Model::Base
+class CommunityGroupsUsers < Jennifer::Model::Base
   with_timestamps
 
   mapping(
     id: Primary32,
     user_id: Int32,
-    group_id: Int32,
-    isManage: Bool,
+    community_group_id: Int32,
+    isManage: Bool?,
     created_at: Time?,
     updated_at: Time?,
   )
 
-  belongs_to :user, User
-  belongs_to :group, CommunityGroup
+  belongs_to :community_groups, CommunityGroup
+  belongs_to :users, User
 end
