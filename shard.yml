@@ -6,6 +6,8 @@ dependencies:
     github: crystal-lang/crystal-mysql
   kemal:
     github: kemalcr/kemal
+  kemal-session:
+    github: kemalcr/kemal-session
   jennifer:
     github: imdrasil/jennifer.cr
     version: "~> 0.8.4"

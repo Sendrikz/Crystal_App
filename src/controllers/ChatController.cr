@@ -1,4 +1,5 @@
 require "kemal"
+require "kemal-session"
 require "../models/*"
 require "json"
 require "../dto/*"
@@ -8,14 +9,14 @@ sockets = [] of HTTP::WebSocket
 public_folder "src/assets"
 
 get "/" do
-  render "src/views/chat.ecr"
+  render "src/views/home.ecr"
 end
 
-ws "/" do |socket|
-  
+ws "/" do |socket, context|
+
   sockets << socket
 
-  record = Message.all.relation(:users).select { [User._name, User._surname, _text] }.results.to_a
+  record = Message.all.where {_community_group_id == context.session.string("group_id")}.relation(:users).select { [User._name, User._surname, _text] }.results.to_a
 
   all = Array(MessageDTO).new
   record.each do |r|
@@ -26,7 +27,7 @@ ws "/" do |socket|
   socket.send all.to_json
 
   socket.on_message do |message|
-    Message.create(text: message.to_s, user_id: 1, community_group_id: 1)
+    Message.create(text: message.to_s, user_id: context.session.string("user_id").to_i, community_group_id: context.session.string("group_id").to_i)
 
     r_record = Message.all.relation(:users).select { [User._name, User._surname, _text] }.results.to_a
     r_all = Array(MessageDTO).new

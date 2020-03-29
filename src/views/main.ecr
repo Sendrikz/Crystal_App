@@ -4,7 +4,6 @@ All your groups:
 
 <%- user_groups.each do |group| -%>
 <form action="/join" method="get">
-  <input type="hidden" name="user" value="<%= user.not_nil!.id %>" />
   <input type="hidden" name="group" value="<%= group.id %>" />
   <%= group.name %>
   <button name="action" value="join" type="submit">Join conversation</button>
@@ -16,7 +15,6 @@ All your groups:
 All groups to which you can be joined:
 <%- groups.each do |group| -%>
 <form action="/add-me" method="get">
-  <input type="hidden" name="user" value="<%= user.not_nil!.id %>" />
   <%= group.name %> <button name="group" value="<%= group.id %>" type="submit">Add me</button>
 </form>
 <%- end -%>
