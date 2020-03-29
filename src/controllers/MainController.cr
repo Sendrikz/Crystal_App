@@ -10,6 +10,7 @@ get "/join" do |env|
   user = User.all.where { _id == user_id }.first.not_nil!
 
   if action == "join"
+    user = user.to_json
     render "src/views/chat.ecr"
   else
     user.deleteGroupById group_id

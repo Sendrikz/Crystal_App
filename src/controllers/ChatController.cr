@@ -1,8 +1,8 @@
 require "kemal"
 require "../models/*"
 require "json"
+require "../dto/*"
 
-messages = [] of String
 sockets = [] of HTTP::WebSocket
 
 public_folder "src/assets"
@@ -12,10 +12,38 @@ get "/" do
 end
 
 ws "/" do |socket|
-  sockets.push socket
   
-  socket.send Message.all.to_a.to_json
+  sockets << socket
 
+  record = Message.all.relation(:users).select { [User._name, User._surname, _text] }.results.to_a
+
+  all = Array(MessageDTO).new
+  record.each do |r|
+    message = MessageDTO.new(r.name.to_s, r.surname.to_s, r.text.to_s)
+    all << message
+  end
+
+  socket.send all.to_json
+
+  socket.on_message do |message|
+    Message.create(text: message.to_s, user_id: 1, community_group_id: 1)
+
+    r_record = Message.all.relation(:users).select { [User._name, User._surname, _text] }.results.to_a
+    r_all = Array(MessageDTO).new
+    r_record.each do |r|
+      message = MessageDTO.new(r.name.to_s, r.surname.to_s, r.text.to_s)
+      r_all << message
+    end
+
+    sockets.each do |a_socket|
+      a_socket.send r_all.to_json
+    end
+  end
+
+  # Remove clients from the list when it's closed
+  socket.on_close do
+    sockets.delete socket
+  end
 
 end
 

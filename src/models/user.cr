@@ -15,8 +15,8 @@ class User < Jennifer::Model::Base
     password_confirmation: { type: String?, virtual: true },
     name: String,
     surname: String,
-    yearOfStudy: Int32,
-    faculty: String,
+    yearOfStudy: Int32?,
+    faculty: String?,
     created_at: Time?,
     updated_at: Time?
   )
@@ -43,6 +43,13 @@ class User < Jennifer::Model::Base
     community_group = CommunityGroupsUsers.all.where{ and(_user_id == user.id, _community_group_id == group_id)}.first.not_nil!
     CommunityGroupsUsers.delete(community_group.id)
   end
+
+  JSON.mapping(
+    email: String,
+    name: String,
+    surname: String,
+    password_digest: String
+  )
 
 
 end
