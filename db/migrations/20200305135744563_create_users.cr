@@ -5,7 +5,7 @@ class CreateUsers < Jennifer::Migration::Base
       t.string :password_digest, { :null => false }
       t.string :name, { :null => false }
       t.string :surname, { :null => false }
-      t.integer :yearOfStudy, { :null => false }
+      t.integer :year_of_study, { :null => false }
       t.string :faculty, { :null => false }
 
       t.timestamps

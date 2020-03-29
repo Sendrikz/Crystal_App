@@ -15,8 +15,8 @@ class User < Jennifer::Model::Base
     password_confirmation: { type: String?, virtual: true },
     name: String,
     surname: String,
-    yearOfStudy: Int32?,
-    faculty: String?,
+    year_of_study: Int32,
+    faculty: String,
     created_at: Time?,
     updated_at: Time?
   )
@@ -44,12 +44,8 @@ class User < Jennifer::Model::Base
     CommunityGroupsUsers.delete(community_group.id)
   end
 
-  JSON.mapping(
-    email: String,
-    name: String,
-    surname: String,
-    password_digest: String
-  )
-
+  def loginWith(password)
+    self.try(&.authenticate(password)).not_nil!
+  end
 
 end

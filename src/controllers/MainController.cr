@@ -1,21 +1,30 @@
 require "kemal"
 require "../models/*"
+require "../convertors/*"
 require "kemal-session"
 
+user_convertor = UserConvertor.new
+group_convertor = GroupConvertor.new
 
 get "/join" do |env|
   group_id = env.params.query["group"].as(String)
-  user_id = env.session.string("user_id")#env.params.query["user"].as(String)
   action = env.params.query["action"].as(String)
-
-  user = User.all.where { _id == user_id }.first.not_nil!
+  session_user = env.session.object("user")
 
   if action == "join"
-    user = user.to_json
-    env.session.string("group_id", group_id.to_s)
+    session_user = session_user.to_json
+
+    group = CommunityGroup.all
+                          .where {_id == group_id}
+                          .first.not_nil!
+    group_dto = group_convertor.convertGroupToGroupDTO(group)
+    env.session.object("group", group_dto)
+
     render "src/views/chat.ecr"
   else
-    user.deleteGroupById group_id
+    user = user_convertor.convertUserDTOToUser(session_user)
+    user.deleteGroupById(group_id)
+
     success_add = false
     user_groups = user.community_groups
     groups = CommunityGroup.all
@@ -28,10 +37,10 @@ end
 
 get "/add-me" do |env|
   group_id = env.params.query["group"].as(String).to_i
-  user_id = env.session.string("user_id")
+  session_user = env.session.object("user")
 
-  user = User.all.where { _id == user_id }.first.not_nil!
-  user.addGroupById group_id
+  user = user_convertor.convertUserDTOToUser(session_user)
+  user.addGroupById(group_id)
 
   success_add = true
   user_groups = user.community_groups

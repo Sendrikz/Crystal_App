@@ -13,7 +13,6 @@ var Chat = React.createClass({
     var server = new WebSocket("ws://" + location.hostname + ":" + location.port);
 
     server.onmessage = function (event) {
-      console.log(event.data);
       var messages = JSON.parse(event.data);
       self.setState({messages: messages});
       window.scrollTo(0, document.body.scrollHeight);
@@ -21,11 +20,11 @@ var Chat = React.createClass({
     };
 
     server.onopen = function () {
-      alert("Open");
+      console.log("Open");
     };
 
     server.onclose = function () {
-      alert("Close");
+      console.log();("Close");
     };
 
     this.server = server;
