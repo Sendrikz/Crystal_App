@@ -54,16 +54,16 @@ var Chat = React.createClass({
   render: function () {
     var messages = this.state.messages.map(function (message) {
     var user = message.name + message.surname;
-    return React.createElement("li", null,
+    return React.createElement("div", null,
         React.createElement('span', null, user+": "),
         React.createElement('span', null, message.text.trim())
     );
     });
 
     return React.createElement("div", null,
-        React.createElement("ul", null, messages),
-        React.createElement("input", { autofocus: true, placeholder: "write your message!", type: "text", ref: "message", onKeyUp: this.sendMessageWithEnter }),
-        React.createElement("button", { type: "button", onClick: this.sendMessage }, "Send")
+        React.createElement("ul", {className: "messages"}, messages),
+        React.createElement("input", { className: "typping", autofocus: true, placeholder: "Write your message!", type: "text", ref: "message", onKeyUp: this.sendMessageWithEnter }),
+        React.createElement("button", { className: "btn btn-login", type: "button", onClick: this.sendMessage }, "Send")
       );
     }
 
