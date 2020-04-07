@@ -1,14 +1,9 @@
 input {
-  border: none;
   outline: none;
 }
 
 button {
   border: none;
-}
-
-::placeholder {
-  color: #fff;
 }
 
 /* Home Modals */
@@ -17,7 +12,6 @@ button {
 }
 
 .modal-content {
-  background-color: #3498db;
   border-radius: 0;
   border: none;
 }
@@ -34,7 +28,7 @@ button {
   font-size: 48px;
   text-transform: uppercase;
   font-weight: 700;
-  color: #fff;
+  color: #5F5A5A;
 }
 
 form[name="login-form"] {
@@ -52,9 +46,8 @@ form[name="registration-form"] {
 }
 
 .home-form-control {
-  background-color: #1d85cb;
   height: 43px;
-  color: #fff;
+  color: #3A3A3A;
   font-size: 14px;
   font-weight: 400;
   padding-left: 40px;
@@ -63,7 +56,7 @@ form[name="registration-form"] {
 
 .home-form-group {
   position: relative;
-  color: #fff;
+  color: #3A3A3A;
 }
 
 .home-form-group + .home-form-group {
@@ -74,7 +67,7 @@ form[name="registration-form"] {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  color: #fff;
+  color: #3A3A3A;
 }
 
 #loginModal .home-form-group i {
@@ -92,8 +85,8 @@ form[name="registration-form"] {
 .home-btn-group .submit {
   width: 100%;
   height: 48px;
-  background-color: #fff;
-  color: #000;
+  background-color: #5F5A5A;
+  color: #fff;
 }
 
 #loginModal .close {
@@ -109,3 +102,18 @@ form[name="registration-form"] {
 }
 
 /* /Home Modals */
+
+.home-header {
+  margin-top: 212px;
+}
+
+.home-header i {
+  font-size: 100px;
+  margin-bottom: 15px;
+}
+
+.home-btn-group .grey-btn {
+  background-color: #e5e5e5;
+  height: 48px;
+  width: 140px;
+}
