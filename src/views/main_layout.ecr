@@ -6,8 +6,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  Header
+  <div class="header">
+  Hello, <%= user.name %> <%= user.surname %>
+  <form name="logout-form" class="logout-form" action="/log-out" method="get">
+    <button type="submit" class="submit">Log out</button>
+  </form>
+</div>
     <%= content %>
-  Footer
 </body>
 </html>

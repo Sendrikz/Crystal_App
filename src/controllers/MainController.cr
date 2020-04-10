@@ -12,12 +12,12 @@ get "/join" do |env|
   session_user = env.session.object("user")
 
   user = user_convertor.convertUserDTOToUser(session_user)
+  group = CommunityGroup.all
+                        .where {_id == group_id}
+                        .first.not_nil!
 
   if action == "join"
     session_user = session_user.to_json
-    group = CommunityGroup.all
-                          .where {_id == group_id}
-                          .first.not_nil!
     group_dto = group_convertor.convertGroupToGroupDTO(group)
     env.session.object("group", group_dto)
   else
@@ -27,7 +27,7 @@ get "/join" do |env|
   user_groups = user.community_groups
   groups = CommunityGroup.all
 
-  render "src/views/main.ecr"
+  render "src/views/main.ecr", "src/views/main_layout.ecr"
 
 end
 
@@ -38,10 +38,19 @@ get "/add-me" do |env|
 
   user = user_convertor.convertUserDTOToUser(session_user)
   user.addGroupById(group_id)
+  group = CommunityGroup.all
+                        .where {_id == group_id}
+                        .first.not_nil!
 
   success_add = true
   user_groups = user.community_groups
   groups = CommunityGroup.all
 
-  render "src/views/main.ecr"
+  render "src/views/main.ecr", "src/views/main_layout.ecr"
+end
+
+get "/log-out" do |env|
+  env.session.destroy
+
+  render "src/views/home.ecr"
 end

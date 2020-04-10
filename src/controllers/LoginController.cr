@@ -26,5 +26,5 @@ post "/login-me" do |env|
   group_dto = group_convertor.convertGroupToGroupDTO(group)
   env.session.object("group", group_dto)
 
-  render "src/views/main.ecr"
+  render "src/views/main.ecr", "src/views/main_layout.ecr"
 end

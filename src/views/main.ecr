@@ -5,44 +5,60 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/randomcolor/0.4.4/randomColor.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="/styles/css/fontawesome-free-5.13.0-web/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles/main.css">
   </head>
   <body>
 
-    <div class="container-flex">
-      <div class="left-bar">
-        <div id="user-info">
-          <h3>Hi <%= user.not_nil!.name %> <%= user.not_nil!.surname %></h3>
+
+    <main id="main">
+        <div class="chat-container">
+          <div class="left-panel">
+          <aside id="chat-rooms">
+            <h4>Your groups<h4>
+            <%- user_groups.each do |group| -%>
+            <div class="chat-room-list-item">
+              <div class="group-img">
+                <i class="fab fa-angellist"></i>
+              </div>
+              <div class="chat-room-list-info">
+                <form action="/join" method="get">
+                  <input type="hidden" name="group" value="<%= group.id %>" />
+                  <h5><%= group.name %></h5>
+                  <button class="chat-btn" name="action" value="join" type="submit">Join</button>
+                  <button class="chat-btn" name="action" value="delete" type="submit">Delete</button>
+                </form>
+              </div>
+            </div>
+            <%- end -%>
+          </aside>
+
+          <aside id="available-chats">
+            <h4>Other groups<h4>
+            <%- groups.each do |group| -%>
+            <div class="chat-room-list-item">
+              <div class="group-img">
+                <i class="fab fa-sistrix"></i>
+              </div>
+                <div class="chat-room-list-info">
+                  <form action="/add-me" method="get">
+                    <h5><%= group.name %></h5>
+                    <button class="chat-btn" name="group" value="<%= group.id %>" type="submit">Add me</button>
+                  </form>
+                </div>
+            </div>
+            <%- end -%>
+          </aside>
         </div>
 
-        <div id="user_groups">
-          <p>All your groups:</p>
-
-           <%- user_groups.each do |group| -%>
-           <form action="/join" method="get">
-             <input type="hidden" name="group" value="<%= group.id %>" />
-             <h5><%= group.name %></h5>
-             <button class="btn btn-login" name="action" value="join" type="submit">Join</button>
-             <button class="btn btn-login" name="action" value="delete" type="submit">Delete</button>
-           </form>
-           <%- end -%>
+          <div class="room-messages">
+            <div class="room-message-header">
+              <h4><%= group.name %></h4>
+            </div>
+            <main id="chat"></main>
+          </div>
         </div>
-
-        <div id="all-groups">
-         <p>All groups to which you can be joined:</p>
-         <%- groups.each do |group| -%>
-         <form action="/add-me" method="get">
-           <h5><%= group.name %></h5>
-           <button class="btn btn-login" name="group" value="<%= group.id %>" type="submit">Add me</button>
-         </form>
-         <%- end -%>
-        </div>
-
-       </div>
-       <div class="main-bar">
-         <main id="chat"></main>
-        </div>
-    </div>
+    </main>
 
     <script src="/javascripts/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

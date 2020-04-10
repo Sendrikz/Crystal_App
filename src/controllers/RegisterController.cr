@@ -18,5 +18,5 @@ post "/register-me" do |env|
   user.save
   user.addRole("Student")
 
-  render "src/views/login.ecr"
+  render "src/views/home.ecr"
 end

@@ -109,11 +109,127 @@ form[name="registration-form"] {
 
 .home-header i {
   font-size: 100px;
-  margin-bottom: 15px;
+  margin-bottom: 13px;
 }
 
 .home-btn-group .grey-btn {
   background-color: #e5e5e5;
   height: 48px;
   width: 140px;
+}
+
+#main .chat-container {
+  display: flex;
+  /* height: calc(180vh - 70px); */
+  padding: 20px 50px;
+}
+
+#main .chat-container #chat-rooms {
+  width: 100%;
+  max-width: 350px;
+  min-width: 327px;
+  box-shadow: 0 0 25px rgba(52, 152, 219, .1);
+  height: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+#main .chat-container #available-chats {
+  width: 100%;
+  max-width: 350px;
+  min-width: 327px;
+  box-shadow: 0 0 25px rgba(52, 152, 219, .1);
+  height: 100%;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#main .chat-container .chat-room-list-item {
+  padding: 15px;
+  display: flex;
+}
+
+#main .chat-container .chat-room-list-item .group-img {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+#main .chat-container .chat-room-list-item .group-img i {
+  font-size: 36px;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+#main .chat-container .chat-room-list-item .chat-room-list-info {
+  position: relative;
+}
+
+h4 {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.chat-btn {
+  width: 90px;
+  height: 24px;
+  font-size: 17px;
+}
+
+.room-message-header {
+  margin-bottom: 27px;
+}
+
+.room-message-text {
+  position: relative;
+}
+
+.room-message-answer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 71%;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.header {
+  height: 70px;
+  background-color: grey;
+}
+
+.typping {
+height: 60px;
+margin-left: 30px;
+margin-top: auto;
+}
+
+.send-btn {
+  position: relative;
+  top: -45px;
+  right: -1039px;
+  width: 50px;
+  height: 58px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  padding-top: 14px;
+  padding-left: 26px;
+}
+
+.logout-form {
+  margin-right: 26px;
 }
