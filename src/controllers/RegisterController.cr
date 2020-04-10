@@ -13,7 +13,6 @@ post "/register-me" do |env|
   user = User.build({:name => name, :surname => surname, :email => email,
     :year_of_study => year_of_study, :faculty => faculty})
   user.password = password
-  user.password_confirmation = confirm_password
 
   user.save
   user.addRole("Student")
