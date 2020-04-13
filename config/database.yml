@@ -1,9 +1,19 @@
+# default: &default
+#   host: localhost
+#   user: root
+#   password: root
+#   adapter: mysql
+#
+# development:
+#   <<: *default
+#   db: community
+
 default: &default
-  host: localhost
-  user: root
-  password: root
+  host: us-cdbr-iron-east-01.cleardb.net
+  user: b19eed3fdedf9f
+  password: 25e4409f
   adapter: mysql
 
 development:
   <<: *default
-  db: community
+  db: heroku_3b744fcfd4ab4e4
