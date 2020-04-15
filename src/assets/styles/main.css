@@ -219,7 +219,7 @@ h4 {
   height: 45px;
   margin-left: 30px;
   margin-top: auto;
-  margin-bottom: 54px;
+  margin-bottom: 65px;
 }
 
 .send-btn {
@@ -240,4 +240,5 @@ h4 {
 
 .logout-form {
   margin-right: 26px;
+  margin-top: 5px;
 }
