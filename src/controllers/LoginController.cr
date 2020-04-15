@@ -20,9 +20,13 @@ post "/login-me" do |env|
   user_groups = user.community_groups
   groups = CommunityGroup.all
 
+  user_first_group_id = CommunityGroupsUsers.all
+                                            .where {_user_id == user.id}
+                                            .first.not_nil!.community_group_id
   group = CommunityGroup.all
-                        .where {_name == "Main"}
+                        .where {_id == user_first_group_id}
                         .first.not_nil!
+
   group_dto = group_convertor.convertGroupToGroupDTO(group)
   env.session.object("group", group_dto)
 

@@ -22,6 +22,12 @@ get "/join" do |env|
     env.session.object("group", group_dto)
   else
     user.deleteGroupById(group_id)
+    user_first_group_id = CommunityGroupsUsers.all
+                                              .where {_user_id == user.id}
+                                              .first.not_nil!.community_group_id
+    group = CommunityGroup.all
+                          .where {_id == user_first_group_id}
+                          .first.not_nil!
   end
 
   user_groups = user.community_groups
