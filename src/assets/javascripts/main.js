@@ -53,7 +53,7 @@ var Chat = React.createClass({
 
   render: function () {
     var messages = this.state.messages.map(function (message) {
-    var user = message.name + message.surname;
+    var user = message.name + " " + message.surname;
     return React.createElement("div", {className: "room-message-text"},
         React.createElement('span', null, user+": "),
         React.createElement('span', null, message.text.trim())
