@@ -15,6 +15,7 @@ post "/register-me" do |env|
 
   user.save
   user.addRole("Student")
+  user.addGroupByName("Main")
 
   render "src/views/home.ecr"
 end

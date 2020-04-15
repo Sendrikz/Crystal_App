@@ -38,6 +38,12 @@ class User < Jennifer::Model::Base
     CommunityGroupsUsers.create(user_id: user.id, community_group_id: group.id)
   end
 
+  def addGroupByName(group_name)
+    group = CommunityGroup.all.where { _name == group_name }.first.not_nil!
+    user = User.all.where {_email == self.email}.first.not_nil!
+    CommunityGroupsUsers.create(user_id: user.id, community_group_id: group.id)
+  end
+
   def deleteGroupById(group_id)
     user = User.all.where {_email == self.email}.first
     community_group = CommunityGroupsUsers.all.where{ and(_user_id == user.id, _community_group_id == group_id)}.first.not_nil!

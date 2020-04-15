@@ -62,8 +62,7 @@ var Chat = React.createClass({
 
     return React.createElement("div", {className: "room-message-answer"},
         React.createElement("ul", {className: "messages"}, messages),
-        React.createElement("input", { className: "typping", autofocus: true, placeholder: "Write your message!", type: "text", ref: "message", onKeyUp: this.sendMessageWithEnter }),
-        React.createElement("button", { className: "send-btn", type: "button", onClick: this.sendMessage }, "Send")
+        React.createElement("input", { className: "typping", autofocus: true, placeholder: "Write your message!", type: "text", ref: "message", onKeyUp: this.sendMessageWithEnter })
       );
     }
 
