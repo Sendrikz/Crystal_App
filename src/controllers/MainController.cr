@@ -44,8 +44,11 @@ get "/add-me" do |env|
 
   user = user_convertor.convertUserDTOToUser(session_user)
   user.addGroupById(group_id)
+  user_first_group_id = CommunityGroupsUsers.all
+                                            .where {_user_id == user.id}
+                                            .first.not_nil!.community_group_id
   group = CommunityGroup.all
-                        .where {_id == group_id}
+                        .where {_id == user_first_group_id}
                         .first.not_nil!
 
   success_add = true

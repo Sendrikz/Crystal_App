@@ -23,6 +23,6 @@ targets:
   community_app:
     main: src/community_app.cr
 
-crystal: 0.33.0
+crystal: 0.31.1
 
 license: MIT
