@@ -10,7 +10,7 @@ var Chat = React.createClass({
   componentDidMount: function () {
     var self = this;
     this.sendable = true;
-    var server = new WebSocket("ws://kma-community.herokuapp.com");
+    var server = new WebSocket("ws://" + location.hostname + ":" + location.port);
 
     server.onmessage = function (event) {
       var messages = JSON.parse(event.data);
